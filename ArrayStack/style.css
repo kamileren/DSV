@@ -1,0 +1,10 @@
+
+body {
+    color: white;
+    background-image: url("layered-peaks-haikei.svg");
+    background-size: cover; /* Cover the entire background */
+    background-repeat: no-repeat; /* Prevent repeating the image */
+    background-position: center center; /* Center the image */
+    background-attachment: fixed; /* Fixed position relative to the viewport */
+    min-height: 100%; /* Ensure minimum height */
+}
