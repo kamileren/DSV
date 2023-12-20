@@ -57,37 +57,46 @@ class ArrayList
     }
     
 
-
-    addAt(index, element) {
+    delay(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+    
+    // Asynchronous addAt function
+    async addAt(index, element) {
         if (index < 0 || index > this.numOfNumberElements) {
             console.log("Invalid index");
             return;
         }
-
-        // Resize if the array is full or if adding right at the end
+    
         if (this.numOfNumberElements === this.data.length || index === this.numOfNumberElements) {
             this.#resize();
         }
-
+    
         // Shift elements to the right
-        for (let i = this.data.length; i > index; i--) {
+        for (let i = this.numOfNumberElements; i > index; i--) {
             this.data[i] = this.data[i - 1];
+            updateDisplay();
+            await this.delay(1000); // Delay for visualization
         }
-
+    
         // Insert the new element
         this.data[index] = element;
-        this.numOfNumberElements++; // Increment the counter
+        this.numOfNumberElements++;
+        updateDisplay(); // Update display after insertion
     }
+    
 
 
-    removeAt(index) {
+    async removeAt(index) {
         if (index < 0 || index >= this.numOfNumberElements) {
             console.log("Invalid index");
             return;
         }
         let removedElement = this.data[index];
-        for (let i = index; i < this.numOfNumberElements - 1; i++) {
+        for (let i = index; i < this.numOfNumberElements; i++) {
             this.data[i] = this.data[i + 1];
+            updateDisplay();
+            await this.delay(250); // Delay for visualization
         }
         this.data[this.numOfNumberElements - 1] = undefined; // Set the last element to undefined
         this.numOfNumberElements--; // Decrement the count of elements

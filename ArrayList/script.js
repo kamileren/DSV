@@ -12,6 +12,7 @@ document.getElementById('add-btn').addEventListener('click', () => {
 
 document.getElementById('add-at-btn').addEventListener('click', () => {
     arrayList.addAt(parseInt(indexInput.value, 10), elementInput.value);
+    const elements = document.querySelectorAll('.array-element');
     updateDisplay();
 });
 
@@ -23,20 +24,8 @@ document.getElementById('remove-btn').addEventListener('click', () => {
 
 document.getElementById('remove-at-btn').addEventListener('click', () => {
     const indexToRemove = parseInt(indexInput.value, 10);
-    if (indexToRemove >= 0 && indexToRemove < arrayList.data.length) {
-        // Immediately remove the element from the array
-        arrayList.removeAt(indexToRemove);
-        // Temporarily update display to show an empty space
-        const elements = document.querySelectorAll('.array-element');
-        if (elements[indexToRemove]) {
-            elements[indexToRemove].textContent = ''; // Clear the text content
-            elements[indexToRemove].classList.add('array-element-empty');
-        }
- 
- 
-        // Delay the visual update of the array display
-        setTimeout(updateDisplay, 1000); // Delay of 1 second
-    }
+    arrayList.removeAt(indexToRemove);
+    updateDisplay();
  });
  
 
