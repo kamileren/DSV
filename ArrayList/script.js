@@ -11,8 +11,8 @@ document.getElementById('add-btn').addEventListener('click', () => {
 });
 
 document.getElementById('add-at-btn').addEventListener('click', () => {
-    arrayList.addAt(parseInt(indexInput.value, 10), elementInput.value);
-    const elements = document.querySelectorAll('.array-element');
+    const indexToAdd = parseInt(indexInput.value, 10);
+    arrayList.addAt(indexToAdd, elementInput.value);
     updateDisplay();
 });
 
@@ -25,7 +25,6 @@ document.getElementById('remove-btn').addEventListener('click', () => {
 document.getElementById('remove-at-btn').addEventListener('click', () => {
     const indexToRemove = parseInt(indexInput.value, 10);
     arrayList.removeAt(indexToRemove);
-    updateDisplay();
  });
  
 
@@ -47,6 +46,8 @@ function updateDisplay() {
     console.log(arrayList)
     arrayDisplay.textContent = 'ArrayList: [' + arrayList.data.join(', ') + ']';
     displayArray();
+    attachEventListeners();
+
  }
  function displayArray() {
     const arrayTitle = document.getElementById('array-list-title');
@@ -59,23 +60,33 @@ function updateDisplay() {
     const arrayDisplay = document.getElementById('array-display');
     arrayDisplay.innerHTML = ''; // Clear existing content
 
-    arrayList.data.forEach((element) => {
+    arrayList.data.forEach((element, index) => {
         // Skip undefined elements
         if (element !== undefined) {
             const elementContainer = document.createElement('div');
             elementContainer.className = 'array-element';
             elementContainer.textContent = `${element}`;
-            arrayDisplay.appendChild(elementContainer);
+
+            const color = arrayList.colors[index];
+            if (color) {
+                elementContainer.style.backgroundColor = color;
+            }
+
+        arrayDisplay.appendChild(elementContainer);
+
         }
     });
+
+    
+
 }
+
 document.getElementById('clear-array-btn').addEventListener('click', () => {
     
     arrayList.clear();
 
     // Update display
     updateDisplay();
-    toggleSidebar(false); // Revert sidebar when array is cleared
 });
 document.getElementById('contains-btn').addEventListener('click', () => {
     const elementToCheck = elementInput.value;
@@ -97,4 +108,63 @@ function toggleSidebar(isArrayCreated) {
     }
 }
 
-updateDisplay()
+function attachEventListeners() {
+    //called very element update to add event listeners to new dynamicly added elements
+    document.querySelectorAll('.array-element').forEach(element => {
+        element.addEventListener('mouseenter', playRandomSound);
+    });
+}
+
+
+document.querySelectorAll('.array-element').forEach(element => {
+    element.addEventListener('click', playRandomSound);
+});
+
+function playRandomSound() {
+    // Array of sound elements
+    const sounds = [
+        document.getElementById('sound1')
+        // Add more sound elements if needed
+    ];
+
+    sounds.forEach(sound => {
+        sound.volume = 0.3; 
+    });
+
+
+    // Select a random sound
+    const randomSound = sounds[Math.floor(Math.random() * sounds.length)];
+
+    // Play the selected sound
+    randomSound.play();
+}
+
+let isSoundEnabled = true; // Default state of the sound
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('toggle-sound-btn').addEventListener('click', toggleSound);
+});
+
+function toggleSound() {
+    isSoundEnabled = !isSoundEnabled; // Toggle the sound state
+    updateSoundState();
+}
+
+function updateSoundState() {
+    const soundButtonText = isSoundEnabled ? '🔇' : '🔊';
+    document.getElementById('toggle-sound-btn').textContent = soundButtonText;
+
+    const soundIDs = ['sound1',];
+    soundIDs.forEach(soundID => {
+        const soundElement = document.getElementById(soundID);
+        if (soundElement) {
+            soundElement.muted = !isSoundEnabled; // Mute or unmute if the element exists
+        } else {
+            console.error(`Audio element with ID '${soundID}' not found.`);
+        }
+    });
+}
+
+
+// Ensure the initial state is applied
+updateSoundState();
