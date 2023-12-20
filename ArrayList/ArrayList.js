@@ -82,7 +82,8 @@ class ArrayList
             return;
         }
         let removedElement = this.data[index];
-        for (let i = index; i < this.numOfNumberElements - 1; i++) {
+        let a = this.numOfNumberElements;
+        for (let i = index; i < a - 1; i++) {
             this.data[i] = this.data[i + 1];
         }
         this.data[this.numOfNumberElements - 1] = undefined; // Set the last element to undefined
