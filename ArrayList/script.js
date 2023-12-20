@@ -20,10 +20,25 @@ document.getElementById('remove-btn').addEventListener('click', () => {
     updateDisplay();
 });
 
+
 document.getElementById('remove-at-btn').addEventListener('click', () => {
-    arrayList.removeAt(elementInput.value);
-    updateDisplay();
-});
+    const indexToRemove = parseInt(indexInput.value, 10);
+    if (indexToRemove >= 0 && indexToRemove < arrayList.data.length) {
+        // Immediately remove the element from the array
+        arrayList.remove(indexToRemove);
+        // Temporarily update display to show an empty space
+        const elements = document.querySelectorAll('.array-element');
+        if (elements[indexToRemove]) {
+            elements[indexToRemove].textContent = ''; // Clear the text content
+            elements[indexToRemove].classList.add('array-element-empty');
+        }
+ 
+ 
+        // Delay the visual update of the array display
+        setTimeout(updateDisplay, 1000); // Delay of 1 second
+    }
+ });
+ 
 
 document.getElementById('set-btn').addEventListener('click', () => {
     arrayList.set(elementInput.value, parseInt(indexInput.value, 10));
@@ -32,6 +47,27 @@ document.getElementById('set-btn').addEventListener('click', () => {
 
 function updateDisplay() {
     arrayDisplay.textContent = 'ArrayList: [' + arrayList.data.join(', ') + ']';
-}
+    displayArray();
+ }
+ function displayArray() {
+    const arrayTitle = document.getElementById('array-list-title');
+    arrayTitle.innerHTML = ''; // Clear existing title
+ 
+ 
+    const heading = document.createElement('h2');
+    heading.textContent = 'ArrayList';
+    arrayTitle.appendChild(heading);
+ 
+ 
+    const arrayDisplay = document.getElementById('array-display');
+    arrayDisplay.innerHTML = ''; // Clear existing content
+    arrayList.data.forEach((element) => {
+        const elementContainer = document.createElement('div');
+        elementContainer.className = 'array-element';
+        elementContainer.textContent = `${element}`;
+        arrayDisplay.appendChild(elementContainer);
+    });
+ }
+ 
 
 updateDisplay();
