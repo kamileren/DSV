@@ -41,16 +41,22 @@ class ArrayList
 
 
     remove() {
-        if(numOfNumberElements-1 <= Math.floor(this.data.length*1/3)) this.shrink();
-        let temp = this.data[numOfNumberElements-1];
-        this.data[numOfNumberElements-1] = undefined;
         if (this.numOfNumberElements === 0) {
             console.log("Array is empty");
             return;
         }
+        
+        let temp = this.data[this.numOfNumberElements - 1];
+        this.data[this.numOfNumberElements - 1] = undefined;
         --this.numOfNumberElements;
+    
+        if (this.numOfNumberElements <= Math.floor(this.data.length * 1 / 3)) {
+            this.shrink();
+        }
+    
         return temp;
     }
+    
 
 
     addAt(index, element) {
