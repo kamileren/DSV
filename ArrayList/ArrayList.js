@@ -16,12 +16,6 @@ class ArrayList
         return this.data[index];
     }
 
-    /**
-     * Adds an element to a specific index in the array
-     * @param {number} index the index where the element is added at
-     * @param {any} element the element being added to the index
-     * @returns 
-     */
     addAt(index, element) {
 
         if (index < 0 || index > this.data.length) {
