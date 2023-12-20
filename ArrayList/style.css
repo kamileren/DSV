@@ -61,6 +61,7 @@
     font-family: 'Poppins', sans-serif;}
 
 .array-element {
+    color: black;
     border: 1px solid #333; /* Border to make it look like a container */
     background-color: #f0f0f0;
     text-align: center;
@@ -83,6 +84,7 @@
 .array-element-empty {
     visibility: hidden;
 }
+
 body {
     color: white;
     background-color: #191919;
@@ -93,6 +95,7 @@ body {
     background-attachment: fixed; /* Fixed position relative to the viewport */
     min-height: 100%; /* Ensure minimum height */
 }
+
 /* Mobile view adjustments */
 @media (max-width: 768px) {
     #array-list-app {
