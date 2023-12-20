@@ -50,7 +50,7 @@ class ArrayList
         this.data[this.numOfNumberElements - 1] = undefined;
         --this.numOfNumberElements;
     
-        if(numOfNumberElements <= Math.floor(this.data.length*1/3)) this.shrink();
+        if(this.data.length>=3*this.numOfNumberElements) this.shrink();
 
     
         return temp;
@@ -91,7 +91,7 @@ class ArrayList
         }
         this.data[this.numOfNumberElements - 1] = undefined; // Set the last element to undefined
         this.numOfNumberElements--; // Decrement the count of elements
-        if(numOfNumberElements <= Math.floor(this.data.length*1/3)) this.shrink();
+        if(this.data.length>=3*this.numOfNumberElements) this.shrink();
         return removedElement;
     }
 
@@ -107,9 +107,9 @@ class ArrayList
 
 
     shrink()
-    {
+    { 
         console.log("shrink");
-        let newArr = new Array(Math.floor(numOfNumberElements*(2/3)))
+        let newArr = new Array(Math.floor(numOfNumberElements*(1/3)))
         for(let i = 0; i< this.numOfNumberElements-1;i++)
         {
             newArr[i] = this.data[i];
