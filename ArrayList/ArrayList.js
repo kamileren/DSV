@@ -23,7 +23,7 @@ class ArrayList
 
     set(element,index)
     {
-
+        
         if (index < 0 || index > this.numOfNumberElements-1) {
             console.log("Invalid index");
             return;
@@ -31,6 +31,7 @@ class ArrayList
         
         let temp = this.data[index];
         this.data[index] = element;
+        updateDisplay();
         return temp;
     }
 

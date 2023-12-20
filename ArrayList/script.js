@@ -10,26 +10,10 @@ document.getElementById('add-btn').addEventListener('click', () => {
     updateDisplay();
 });
 
-document.getElementById('add-at-btn').addEventListener('click', () => {
-    const indexToAdd = parseInt(indexInput.value, 10);
-    arrayList.addAt(indexToAdd, elementInput.value);
-    updateDisplay();
-});
+
 
 document.getElementById('remove-btn').addEventListener('click', () => {
     arrayList.remove();
-    updateDisplay();
-});
-
-
-document.getElementById('remove-at-btn').addEventListener('click', () => {
-    const indexToRemove = parseInt(indexInput.value, 10);
-    arrayList.removeAt(indexToRemove);
- });
- 
-
-document.getElementById('set-btn').addEventListener('click', () => {
-    arrayList.set(elementInput.value, parseInt(indexInput.value, 10));
     updateDisplay();
 });
 
@@ -108,12 +92,22 @@ function toggleSidebar(isArrayCreated) {
     }
 }
 
+
 function attachEventListeners() {
-    //called very element update to add event listeners to new dynamicly added elements
     document.querySelectorAll('.array-element').forEach(element => {
         element.addEventListener('mouseenter', playRandomSound);
+
+        element.addEventListener('click', () => {
+            event.stopPropagation();  // Prevent click from propagating to the document
+
+            console.log("Element clicked"); // Console log for debugging
+            showPopup(element, "");
+        });
+
     });
 }
+
+
 
 
 document.querySelectorAll('.array-element').forEach(element => {
@@ -166,5 +160,104 @@ function updateSoundState() {
 }
 
 
-// Ensure the initial state is applied
+function showPopup(element, additionalContent) {
+    let popup = document.getElementById("popup");
+    if (!popup) {
+        popup = document.createElement("div");
+        popup.id = "popup";
+        popup.className = "popup";
+        document.body.appendChild(popup);
+    }
+
+    // Calculate the index (nth child) of the element
+    const index = Array.from(element.parentNode.children).indexOf(element);
+    const content = `<strong>Index: </strong> ${index}<br/>${additionalContent}`;
+    const inputForAddSet = document.createElement('input');
+    
+    inputForAddSet.type = 'text';
+    inputForAddSet.placeholder = 'Enter value';
+    inputForAddSet.className = 'popup-input'; // Add a class for styling
+
+    
+
+   
+
+
+    popup.innerHTML = content;
+    const rect = element.getBoundingClientRect();
+    popup.style.left = `${rect.right + 10}px`;
+    popup.style.top = `${rect.top}px`;
+    popup.style.display = "block";
+    popup.innerHTML = `<strong>Index: </strong> ${index}<br/>${additionalContent}`;
+
+
+    
+
+    // Append input field to the popup
+
+    
+    // Create buttons and set their actions
+    const addButton = document.createElement('button');
+    addButton.textContent = 'Add';
+    addButton.onclick = () => {
+        arrayList.addAt(index, inputForAddSet.value);
+        updateDisplay();
+        hidePopup();
+    };
+
+    const removeButton = document.createElement('button');
+    removeButton.textContent = 'Remove';
+    removeButton.onclick = () => arrayList.removeAt(index);
+
+    const setButton = document.createElement('button');
+    setButton.textContent = 'Set';
+    setButton.onclick = () => {
+        arrayList.set(inputForAddSet.value,index);
+        updateDisplay();
+        hidePopup();
+    };
+    
+
+    // Append buttons to the content
+    popup.innerHTML = `<strong>Index: </strong> ${index}<br/>${additionalContent}`;
+    popup.appendChild(addButton);
+    popup.appendChild(removeButton);
+    popup.appendChild(setButton);
+    popup.appendChild(inputForAddSet);
+
+
+
+}
+
+
+
+document.addEventListener('click', (event) => {
+    console.log("Document clicked"); // Debugging log
+    const popup = document.getElementById('popup');
+    if (popup && !popup.contains(event.target)) {
+        console.log("Hiding popup"); // Debugging log
+        hidePopup();
+    }
+});
+
+
+function hidePopup() {
+    const popup = document.getElementById("popup");
+    if (popup) {
+        popup.style.display = "none";
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+updateDisplay();
 updateSoundState();
