@@ -3,7 +3,7 @@ class ArrayList
     constructor()
     {
         this.data = new Array();   
-        this.numOfNumberElements = 0;
+        this.#numOfNumberElements = 0;
     }   
 
 
@@ -95,9 +95,14 @@ class ArrayList
         return removedElement;
     }
 
+    size()
+    {
+        return numOfNumberElements;
+    }
 
 
-    resize() {
+
+    #resize() {
         let newArr = new Array(this.data.length * 2);
         for (let i = 0; i < this.data.length; i++) {
             newArr[i] = this.data[i];
@@ -106,7 +111,7 @@ class ArrayList
     }
 
 
-    shrink()
+    #shrink()
     { 
         console.log("shrink");
         let newArr = new Array(Math.floor(this.numOfNumberElements*(1/3)))
@@ -125,31 +130,3 @@ class ArrayList
     }
 
 }
-
-
-
-function getRandomIndex(max) {
-    return Math.floor(Math.random() * max);
-}   
-
-function testAddition(arrayList, numOfElements) {
-    for (let i = 0; i < numOfElements; i++) {
-        arrayList.add(i);
-        if (arrayList.get(i) !== i) {
-            return false; // Test failed
-        }
-    }
-    return arrayList.numOfNumberElements === numOfElements; // Check if all elements were added
-}
-
-
-function testRemoval(arrayList) {
-    let originalSize = arrayList.numOfNumberElements;
-    let removedElement = arrayList.remove();
-    return arrayList.numOfNumberElements === originalSize - 1 && !arrayList.data.includes(removedElement);
-}
-let numberList = new ArrayList();
-let numOfNumberElements = 10;
-
-console.log("Testing Addition:", testAddition(numberList, numOfNumberElements));
-console.log("Testing Removal:", testRemoval(numberList));
