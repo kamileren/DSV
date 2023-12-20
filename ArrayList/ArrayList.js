@@ -113,7 +113,7 @@ class ArrayList
         return false;
     }
 
-    
+
     indexOf(element)
     {
 
@@ -141,6 +141,20 @@ class ArrayList
         return a;
     }
 
+    clear()
+    {
+        this.data = new Array(1);
+    }
+
+    toString()
+    {
+        let str = '';
+
+        str+="Data: ",this.data;
+        str+="\nNumberofElements: ",this.numOfNumberElements;
+
+    }
+
 
 
     #resize() {
@@ -165,9 +179,6 @@ class ArrayList
     }
 
 
-    clear()
-    {
-        this.data = new Array(1);
-    }
+    
 
 }
