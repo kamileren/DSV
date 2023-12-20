@@ -32,6 +32,24 @@ document.getElementById('set-btn').addEventListener('click', () => {
 
 function updateDisplay() {
     arrayDisplay.textContent = 'ArrayList: [' + arrayList.data.join(', ') + ']';
+    displayArray();
+}
+function displayArray() {
+    const arrayTitle = document.getElementById('array-list-title');
+    arrayTitle.innerHTML = ''; // Clear existing title
+
+    const heading = document.createElement('h2');
+    heading.textContent = 'ArrayList';
+    arrayTitle.appendChild(heading);
+
+    const arrayDisplay = document.getElementById('array-display');
+    arrayDisplay.innerHTML = ''; // Clear existing content
+    arrayList.data.forEach((element) => {
+        const elementContainer = document.createElement('div');
+        elementContainer.className = 'array-element';
+        elementContainer.textContent = `${element}`;
+        arrayDisplay.appendChild(elementContainer);
+    });
 }
 
 updateDisplay();
