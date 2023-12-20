@@ -79,9 +79,16 @@ function updateDisplay() {
         }
     });
 }
+document.getElementById('clear-array-btn').addEventListener('click', () => {
+    // Assuming the 'remove' method removes the last element
+    while (arrayList.data.length > 0) {
+        arrayList.remove();
+    }
+
+    // Update the display
+    updateDisplay();
+});
 
 updateDisplay();
 
  
-
-updateDisplay();
