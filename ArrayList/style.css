@@ -35,3 +35,6 @@
 .array-element-empty {
     visibility: hidden;
 }
+body{
+    background-image:url("/background.svg");
+}
