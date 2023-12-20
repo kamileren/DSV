@@ -58,7 +58,6 @@ function updateDisplay() {
     displayArray();
  }
  function displayArray() {
-    console.log(arrayList);
     const arrayTitle = document.getElementById('array-list-title');
     arrayTitle.innerHTML = ''; // Clear existing title
 
