@@ -1,11 +1,9 @@
-
-
 const arrayList = new ArrayList();
 const elementInput = document.getElementById('element-input');
 const indexInput = document.getElementById('index-input');
 const arrayDisplay = document.getElementById('array-display');
 const sidebar = document.getElementById('sidebar');
-
+    
 
 document.getElementById('add-btn').addEventListener('click', () => {
     arrayList.add(elementInput.value);
@@ -13,14 +11,9 @@ document.getElementById('add-btn').addEventListener('click', () => {
 });
 
 document.getElementById('add-at-btn').addEventListener('click', () => {
-    const indexToAdd = parseInt(indexInput.value, 10);
-    if (indexToAdd >= 0 && indexToAdd <= arrayList.data.length) {
-        arrayList.addAt(indexToAdd, elementInput.value);
-        highlightAndAnimateShift(indexToAdd, 'add');
-        setTimeout(updateDisplay, 1000); // Delay to show animation
-    }
+    arrayList.addAt(parseInt(indexInput.value, 10), elementInput.value);
+    updateDisplay();
 });
-
 
 document.getElementById('remove-btn').addEventListener('click', () => {
     arrayList.remove();
@@ -115,39 +108,4 @@ function toggleSidebar(isArrayCreated) {
     }
 }
 
-document.getElementById('remove-at-btn').addEventListener('click', () => {
-    const indexToRemove = parseInt(indexInput.value, 10);
-    if (indexToRemove >= 0 && indexToRemove < arrayList.data.length) {
-        highlightAndAnimateShift(indexToRemove, 'remove');
-        setTimeout(updateDisplay, 1000); // Delay to show animation
-    }
-});
-
-function highlightAndAnimateShift(index, operation) {
-    const elements = document.querySelectorAll('.array-element');
-    let startIndex = operation === 'add' ? index : index + 1;
-
-    for (let i = startIndex; i < elements.length; i++) {
-        elements[i].classList.add('highlight-shift');
-    }
-
-    // Remove highlight after animation
-    setTimeout(() => {
-        document.querySelectorAll('.highlight-shift').forEach(el => {
-            el.classList.remove('highlight-shift');
-        });
-    }, 1000);
-
-    arrayList.removeAt(indexToRemove);
-
-
-}
-
-
-
-
-
-
-updateDisplay();
-
- 
+updateDisplay()
