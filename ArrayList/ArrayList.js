@@ -2,37 +2,66 @@ class ArrayList
 {
     constructor()
     {
-        this.data = [];
+        this.data = new Array();   
+        this.numOfNumberElements = 0;
     }   
 
-    add(element)
-    {
-        //add the element to the end of our array
-        this.data.push(element);
-    }
+
 
     get(index)
     {
+        if (index < 0 || index > this.numOfNumberElements-1) {
+            console.log("Invalid index");
+            return;
+        }
+
         return this.data[index];
     }
 
     set(element,index)
     {
+
+        if (index < 0 || index > this.numOfNumberElements-1) {
+            console.log("Invalid index");
+            return;
+        }
+        
         let temp = this.data[index];
         this.data[index] = element;
         return temp;
     }
 
-    remove()
-    {
-        return this.data.pop();
+    add(element) {
+        if (this.numOfNumberElements >= this.data.length) {
+            this.resize();
+        }
+        this.data[this.numOfNumberElements] = element;
+        this.numOfNumberElements++;
     }
 
-    addAt(index, element) {
 
-        if (index < 0 || index > this.data.length) {
+    remove() {
+        if(numOfNumberElements-1 <= Math.floor(this.data.length*1/3)) this.shrink();
+        let temp = this.data[numOfNumberElements-1];
+        this.data[numOfNumberElements-1] = undefined;
+        if (this.numOfNumberElements === 0) {
+            console.log("Array is empty");
+            return;
+        }
+        --this.numOfNumberElements;
+        return temp;
+    }
+
+
+    addAt(index, element) {
+        if (index < 0 || index > this.numOfNumberElements) {
             console.log("Invalid index");
             return;
+        }
+
+        // Resize if the array is full or if adding right at the end
+        if (this.numOfNumberElements === this.data.length || index === this.numOfNumberElements) {
+            this.resize();
         }
 
         // Shift elements to the right
@@ -40,27 +69,47 @@ class ArrayList
             this.data[i] = this.data[i - 1];
         }
 
-        // Insert the new element and increase the size
+        // Insert the new element
         this.data[index] = element;
+        this.numOfNumberElements++; // Increment the counter
     }
 
-    removeAt(element) {
-        for (let i = 0; i < this.data.length; i++) {
-            if (this.data[i] == element) {
-                let temp = this.data[i];
-    
-                // Shift elements to the left
-                for (let j = i; j < this.data.length - 1; j++) {
-                    this.data[j] = this.data[j + 1];
-                }
-    
-                // Remove the last duplicated element
-                this.data.length--;
-    
-                return temp;
-            }
+
+    removeAt(index) {
+        if(numOfNumberElements-1 <= Math.floor(this.data.length*2/3)) this.shrink();
+        if (index < 0 || index >= this.numOfNumberElements) {
+            console.log("Invalid index");
+            return;
         }
-        console.log("Element not found");
+        let removedElement = this.data[index];
+        for (let i = index; i < this.numOfNumberElements - 1; i++) {
+            this.data[i] = this.data[i + 1];
+        }
+        this.data[this.numOfNumberElements - 1] = undefined; // Set the last element to undefined
+        this.numOfNumberElements--; // Decrement the count of elements
+        return removedElement;
+    }
+
+
+
+    resize() {
+        let newArr = new Array(this.data.length * 2);
+        for (let i = 0; i < this.data.length; i++) {
+            newArr[i] = this.data[i];
+        }
+        this.data = newArr;
+    }
+
+
+    shrink()
+    {
+        let newArr = new Array(Math.floor(numOfNumberElements*(2/3)))
+        for(let i = 0; i< this.numOfNumberElements-1;i++)
+        {
+            newArr[i] = this.data[i];
+        }
+
+        this.data = newArr;
     }
 
 }
@@ -71,42 +120,24 @@ function getRandomIndex(max) {
     return Math.floor(Math.random() * max);
 }   
 
-// Debug flag
-const debug = true; // Set to true to enable debug logs, false to disable
-
-// Test setup for numbers
-let numberList = new ArrayList();
-let numOfNumberElements = 10; // Can be changed for different tests
-
-// Adding numbers to the list
-for (let i = 0; i < numOfNumberElements; i++) {
-    numberList.add(i);
-    if (debug) console.log(`Added ${i} to the list.`);
-}
-
-// Randomly remove elements
-for (let i = 0; i < numOfNumberElements / 2; i++) {
-    let indexToRemove = getRandomIndex(numberList.data.length);
-    let removed = numberList.removeAt(numberList.get(indexToRemove));
-    if (debug) console.log(`Removed element ${removed} at index ${indexToRemove}.`);
-}
-
-// Randomly update elements
-for (let i = 0; i < numOfNumberElements / 2; i++) {
-    let indexToSet = getRandomIndex(numberList.data.length);
-    let oldValue = numberList.get(indexToSet);
-    numberList.set(indexToSet + 100, indexToSet);
-    if (debug) console.log(`Updated element at index ${indexToSet} from ${oldValue} to ${indexToSet + 100}.`);
-}
-
-// Test for remaining and updated elements
-let numberTestPassed = true;
-for (let i = 0; i < numberList.data.length; i++) {
-    let element = numberList.get(i);
-    if (typeof element !== "number" || (element < 0 && element >= 100)) {
-        numberTestPassed = false;
-        break;
+function testAddition(arrayList, numOfElements) {
+    for (let i = 0; i < numOfElements; i++) {
+        arrayList.add(i);
+        if (arrayList.get(i) !== i) {
+            return false; // Test failed
+        }
     }
+    return arrayList.numOfNumberElements === numOfElements; // Check if all elements were added
 }
 
-console.log("Number Test with Random Removes and Sets:", numberTestPassed);
+
+function testRemoval(arrayList) {
+    let originalSize = arrayList.numOfNumberElements;
+    let removedElement = arrayList.remove();
+    return arrayList.numOfNumberElements === originalSize - 1 && !arrayList.data.includes(removedElement);
+}
+let numberList = new ArrayList();
+let numOfNumberElements = 10;
+
+console.log("Testing Addition:", testAddition(numberList, numOfNumberElements));
+console.log("Testing Removal:", testRemoval(numberList));
