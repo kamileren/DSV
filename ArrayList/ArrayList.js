@@ -118,6 +118,12 @@ class ArrayList
         this.data = newArr;
     }
 
+
+    clear()
+    {
+        this.data = new Array();
+    }
+
 }
 
 
