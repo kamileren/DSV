@@ -109,7 +109,7 @@ class ArrayList
     shrink()
     { 
         console.log("shrink");
-        let newArr = new Array(Math.floor(numOfNumberElements*(1/3)))
+        let newArr = new Array(Math.floor(this.numOfNumberElements*(1/3)))
         for(let i = 0; i< this.numOfNumberElements;i++)
         {
             newArr[i] = this.data[i];
