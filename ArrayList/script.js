@@ -26,7 +26,6 @@ document.getElementById('remove-at-btn').addEventListener('click', () => {
     const indexToRemove = parseInt(indexInput.value, 10);
     arrayList.removeAt(indexToRemove);
     updateDisplay();
-
  });
  
 

@@ -96,7 +96,7 @@ class ArrayList
         for (let i = index; i < this.numOfNumberElements; i++) {
             this.data[i] = this.data[i + 1];
             updateDisplay();
-            await this.delay(1000); // Delay for visualization
+            await this.delay(250); // Delay for visualization
         }
         this.data[this.numOfNumberElements - 1] = undefined; // Set the last element to undefined
         this.numOfNumberElements--; // Decrement the count of elements
