@@ -135,6 +135,60 @@ body {
 }
 
 
+.popup {
+    display: none;
+    position: absolute;
+    z-index: 10;
+    background-color: #750E21;
+    color: white;
+    border: 1px solid #750E21;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    max-width: 300px; /* Maximum width */
+    word-wrap: break-word; /* Ensure text wraps */
+}
+
+.popup button {
+    padding: 2px 5px;
+    margin: 5px;
+    border: none;
+    border-radius: 1px;
+    background-color: #AE445A;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.popup button:hover {
+    background-color: #0056b3;
+}
+
+.popup-content {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+}
+
+.popup-input {
+    width: 3    0%; /* Make the input field take up the full width of the popup */
+    padding: 8px;
+    margin-bottom: 10px; /* Add some space below the input field */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+
+
+
+
+
+
 
 /* Mobile view adjustments */
 @media (max-width: 768px) {
