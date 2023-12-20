@@ -117,8 +117,3 @@ body {
     }
 }
 
-.highlight-shift {
-    transition: transform 1s ease;
-    transform: translateX(-30px); /* Adjust based on your layout */
-}
-
