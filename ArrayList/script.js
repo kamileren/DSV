@@ -25,7 +25,7 @@ document.getElementById('remove-at-btn').addEventListener('click', () => {
     const indexToRemove = parseInt(indexInput.value, 10);
     if (indexToRemove >= 0 && indexToRemove < arrayList.data.length) {
         // Immediately remove the element from the array
-        arrayList.remove(indexToRemove);
+        arrayList.removeAt(indexToRemove);
         // Temporarily update display to show an empty space
         const elements = document.querySelectorAll('.array-element');
         if (elements[indexToRemove]) {
@@ -58,25 +58,29 @@ function updateDisplay() {
     displayArray();
  }
  function displayArray() {
-    console.log(arrayList);
     const arrayTitle = document.getElementById('array-list-title');
     arrayTitle.innerHTML = ''; // Clear existing title
- 
- 
+
     const heading = document.createElement('h2');
     heading.textContent = 'ArrayList';
     arrayTitle.appendChild(heading);
- 
- 
+
     const arrayDisplay = document.getElementById('array-display');
     arrayDisplay.innerHTML = ''; // Clear existing content
+
     arrayList.data.forEach((element) => {
-        const elementContainer = document.createElement('div');
-        elementContainer.className = 'array-element';
-        elementContainer.textContent = `${element}`;
-        arrayDisplay.appendChild(elementContainer);
+        // Skip undefined elements
+        if (element !== undefined) {
+            const elementContainer = document.createElement('div');
+            elementContainer.className = 'array-element';
+            elementContainer.textContent = `${element}`;
+            arrayDisplay.appendChild(elementContainer);
+        }
     });
- }
+}
+
+updateDisplay();
+
  
 
 updateDisplay();
