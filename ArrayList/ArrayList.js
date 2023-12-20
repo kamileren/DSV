@@ -152,7 +152,7 @@ class ArrayList
 
         str+="Data: ",this.data;
         str+="\nNumberofElements: ",this.numOfNumberElements;
-
+        
     }
 
 
@@ -178,5 +178,7 @@ class ArrayList
         this.data = newArr;
     }
 
+
+    
 
 }
