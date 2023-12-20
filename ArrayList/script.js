@@ -4,6 +4,8 @@ const arrayList = new ArrayList();
 const elementInput = document.getElementById('element-input');
 const indexInput = document.getElementById('index-input');
 const arrayDisplay = document.getElementById('array-display');
+const sidebar = document.getElementById('sidebar');
+    
 
 document.getElementById('add-btn').addEventListener('click', () => {
     arrayList.add(elementInput.value);
@@ -51,9 +53,11 @@ document.getElementById('make-array-btn').addEventListener('click', () => {
         arrayList.add(i);
     }
     updateDisplay();
+    toggleSidebar(true); // Toggle sidebar when array is created
 });
 
 function updateDisplay() {
+    console.log(arrayList)
     arrayDisplay.textContent = 'ArrayList: [' + arrayList.data.join(', ') + ']';
     displayArray();
  }
@@ -62,7 +66,7 @@ function updateDisplay() {
     arrayTitle.innerHTML = ''; // Clear existing title
 
     const heading = document.createElement('h2');
-    heading.textContent = 'ArrayList';
+    heading.textContent = 'ArrayList Visualization';
     arrayTitle.appendChild(heading);
 
     const arrayDisplay = document.getElementById('array-display');
@@ -84,6 +88,7 @@ document.getElementById('clear-array-btn').addEventListener('click', () => {
 
     // Update display
     updateDisplay();
+    toggleSidebar(false); // Revert sidebar when array is cleared
 });
 document.getElementById('contains-btn').addEventListener('click', () => {
     const elementToCheck = elementInput.value;
@@ -94,6 +99,17 @@ document.getElementById('contains-btn').addEventListener('click', () => {
         arrayDisplay.style.backgroundColor = 'initial';
     }
 });
+
+function toggleSidebar(isArrayCreated) {
+    if (isArrayCreated) {
+        sidebar.classList.add('sidebar-reduced');
+        document.querySelectorAll('.hide-on-array-create').forEach(button => button.style.display = 'none');
+    } else {
+        sidebar.classList.remove('sidebar-reduced');
+        document.querySelectorAll('.hide-on-array-create').forEach(button => button.style.display = 'block');
+    }
+}
+
 
 updateDisplay();
 
