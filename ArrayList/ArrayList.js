@@ -1,11 +1,11 @@
 class ArrayList
 {
+
     constructor()
     {
-        this.data = new Array();   
-        this.#numOfNumberElements = 0;
+        this.data = new Array(1);   
+        this.numOfNumberElements = 0;
     }   
-
 
 
     get(index)
@@ -33,7 +33,7 @@ class ArrayList
 
     add(element) {
         if (this.numOfNumberElements >= this.data.length) {
-            this.resize();
+            this.#resize();
         }
         this.data[this.numOfNumberElements] = element;
         this.numOfNumberElements++;
@@ -50,7 +50,7 @@ class ArrayList
         this.data[this.numOfNumberElements - 1] = undefined;
         --this.numOfNumberElements;
     
-        if(this.data.length>=3*this.numOfNumberElements) this.shrink();
+        if(this.data.length>=3*this.numOfNumberElements) this.#shrink();
 
     
         return temp;
@@ -66,7 +66,7 @@ class ArrayList
 
         // Resize if the array is full or if adding right at the end
         if (this.numOfNumberElements === this.data.length || index === this.numOfNumberElements) {
-            this.resize();
+            this.#resize();
         }
 
         // Shift elements to the right
@@ -91,7 +91,7 @@ class ArrayList
         }
         this.data[this.numOfNumberElements - 1] = undefined; // Set the last element to undefined
         this.numOfNumberElements--; // Decrement the count of elements
-        if(this.data.length>=3*this.numOfNumberElements) this.shrink();
+        if(this.data.length>=3*this.numOfNumberElements) this.#shrink();
         return removedElement;
     }
 
@@ -126,7 +126,7 @@ class ArrayList
 
     clear()
     {
-        this.data = new Array();
+        this.data = new Array(1);
     }
 
 }
