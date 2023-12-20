@@ -5,7 +5,7 @@ class ArrayList
         this.data = new Array();   
         this.numOfNumberElements = 0;
     }   
-    
+
 
 
     get(index)
@@ -45,7 +45,7 @@ class ArrayList
             console.log("Array is empty");
             return;
         }
-        
+        console.log('Removing last element');
         let temp = this.data[this.numOfNumberElements - 1];
         this.data[this.numOfNumberElements - 1] = undefined;
         --this.numOfNumberElements;
