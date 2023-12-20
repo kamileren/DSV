@@ -1,7 +1,48 @@
 #array-list-app {
-    text-align: center;
-    margin-top: 20px;
+    display: flex;
+    align-items: start;
 }
+
+#sidebar {
+    flex: 0 0 200px; /* Adjust width as needed */
+    padding: 20px;
+    border-right: 1px solid #ccc; /* Border between sidebar and main content */
+}
+
+#array-list-container {
+    flex-grow: 1; /* Take up the remaining space */
+    padding: 20px;
+}
+#array-list-title {
+    width: 100%; /* Ensure full width */
+    text-align: center; /* Center the text */
+}
+
+#sidebar button,
+#sidebar input {
+    display: block; /* Make each button and input block-level */
+    width: 100%; /* Full width of the sidebar */
+    margin-bottom: 10px; /* Space between buttons */
+    box-sizing: border-box; /* Include padding and border in the width */
+}
+#sidebar button {
+    background-color: rgb(109, 185, 239); /* Gray background */
+    border: 2px solid #F4F27E; /* Yellow outline */
+    color: white; /* Adjust text color as needed */
+    padding: 10px; /* Adjust padding for better spacing */
+    margin-bottom: 10px; /* Space between buttons */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    border-radius: 8px; /* Rounded corners */
+}
+
+#sidebar button:hover {
+    background-color: #F4F27E; /* Change background on hover */
+}
+
+#sidebar input {
+    margin-top: 10px; /* Add some space above the first input */
+}
+
 
 #array-display {
     display: flex;
@@ -35,6 +76,11 @@
 .array-element-empty {
     visibility: hidden;
 }
-body{
-    background-image:url("/background.svg");
+body {
+    background-image: url("background.svg");
+    background-size: cover; /* Cover the entire background */
+    background-repeat: no-repeat; /* Prevent repeating the image */
+    background-position: center center; /* Center the image */
+    background-attachment: fixed; /* Fixed position relative to the viewport */
+    min-height: 100%; /* Ensure minimum height */
 }
