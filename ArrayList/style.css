@@ -83,22 +83,27 @@ body {
     background-attachment: fixed; /* Fixed position relative to the viewport */
     min-height: 100%; /* Ensure minimum height */
 }
-/* Mobile view: Sidebar at the bottom */
+/* Mobile view adjustments */
 @media (max-width: 768px) {
     #array-list-app {
-        /* Adjust layout for mobile */
+        display: flex;
         flex-direction: column;
+        align-items: center; /* Center items horizontally */
     }
 
     #sidebar {
-        position: fixed; /* Fix position to the bottom of the viewport */
+        position: absolute; /* Fix position to the bottom of the viewport */
         bottom: 0;
-        left: 0;
-        width: 100%;
-        /* Additional styles for mobile sidebar, like background, padding, etc. */
+        width: 100%; /* Full width */
+        order: 2; /* Ensure it's at the bottom */
+        margin: 0;
+        padding: 0;
+        /* Remove any styles that could affect horizontal positioning like margin, float, position */
     }
 
     #array-list-container {
-        padding-bottom: /* Height of the sidebar to prevent overlap */;
+        order: 1;
+        width: 100%; /* Full width */
+        /* Add padding-bottom if needed */
     }
 }
