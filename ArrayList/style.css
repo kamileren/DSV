@@ -3,10 +3,6 @@
     align-items: start;
 }
 
-#sidebar {
-    flex: 0 0 200px; /* Adjust width as needed */
-    padding: 20px;
-}
 
 #array-list-container {
     flex-grow: 1; /* Take up the remaining space */
@@ -17,44 +13,56 @@
     text-align: center; /* Center the text */
 }
 
-#sidebar button,
-#sidebar input {
-    display: block; /* Make each button and input block-level */
-    width: 100%; /* Full width of the sidebar */
-    margin-bottom: 10px; /* Space between buttons */
-    box-sizing: border-box; /* Include padding and border in the width */
+#sidebar {
+    flex: 0 0 200px; /* Adjust width as needed */
+    padding: 20px;
+    flex-grow: 0.1;
+    background-color: #2c3e50; /* Dark background for contrast */
+    color: #ecf0f1; /* Light text color for readability */
+    border-radius: 10px; /* Rounded corners for a modern look */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
+
+#sidebar input, #sidebar button {
+    display: block; /* Block-level for full width */
+    width: calc(100% - 20px); /* Full width minus padding */
+    margin: 10px auto; /* Center align with margin */
+    padding: 8px; /* Comfortable padding */
+    border-radius: 4px; /* Slight rounding of corners */
+}
+
+#sidebar input {
+    border: 1px solid #7f8c8d; /* Subtle border for inputs */
+    background-color: #34495e; /* Slightly lighter background for contrast */
+    color: #ecf0f1; /* Light color for text */
+}
+
 #sidebar button {
-    background-color: rgb(109, 185, 239); /* Gray background */
-    border: 2px solid #F4F27E; /* Yellow outline */
-    color: white; /* Adjust text color as needed */
-    padding: 10px; /* Adjust padding for better spacing */
-    margin-bottom: 10px; /* Space between buttons */
-    cursor: pointer; /* Change cursor to pointer on hover */
-    border-radius: 8px; /* Rounded corners */
+    border: none; /* Remove default border */
+    background-color: #16a085; /* Pleasant green shade */
+    color: #ecf0f1; /* White text for contrast */
+    cursor: pointer; /* Pointer to indicate clickability */
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
 }
 
 #sidebar button:hover {
-    background-color: #F4F27E; /* Change background on hover */
-}
-
-#sidebar input {
-    margin-top: 10px; /* Add some space above the first input */
+    background-color: #1abc9c; /* Lighter shade on hover */
 }
 
 
 #array-display {
+    flex-grow: 1;
     display: flex;
+    flex-grow: 1;
     flex-wrap: wrap;
-    justify-content: center; /* Center flex items horizontally */
+    justify-content: center;
+    align-self: stretch; /* Center flex items horizontally */
     margin-top: 20px;
-    font-family: monospace;
-}
+    font-family: 'Poppins', sans-serif;}
 
 .array-element {
     border: 1px solid #333; /* Border to make it look like a container */
     background-color: #f0f0f0;
-    border-radius: 5px;
     text-align: center;
 
     /* Adjustments for square shape and size */
@@ -76,7 +84,9 @@
     visibility: hidden;
 }
 body {
-    background-image: url("background.svg");
+    color: white;
+    background-color: #191919;
+    background-image: url("layered-peaks-haikei.svg");
     background-size: cover; /* Cover the entire background */
     background-repeat: no-repeat; /* Prevent repeating the image */
     background-position: center center; /* Center the image */
@@ -92,13 +102,9 @@ body {
     }
 
     #sidebar {
-        position: absolute; /* Fix position to the bottom of the viewport */
-        bottom: 0;
-        width: 100%; /* Full width */
-        order: 2; /* Ensure it's at the bottom */
-        margin: 0;
-        padding: 0;
-        /* Remove any styles that could affect horizontal positioning like margin, float, position */
+        flex-basis: 100%; /* Full width on small screens */
+        order: 2; /* Move to the bottom */
+        border-radius: 0; /* Remove border-radius for a full-width look */
     }
 
     #array-list-container {
