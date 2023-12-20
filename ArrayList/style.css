@@ -13,11 +13,23 @@
 
 .array-element {
     border: 1px solid #333; /* Border to make it look like a container */
-    padding: 10px;
-    margin: 5px;
     background-color: #f0f0f0;
     border-radius: 5px;
     text-align: center;
+
+    /* Adjustments for square shape and size */
+    width: 30px; /* Smaller width for the box */
+    height: 30px; /* Height equal to width to make it square */
+    line-height: 30px; /* Align text vertically */
+
+    /* Remove margin and use padding for spacing */
+    margin: 0;
+    padding: 2px; /* Adjust padding as needed */
+
+    /* Flexbox settings for centering content */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .array-element-empty {
