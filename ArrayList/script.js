@@ -45,6 +45,14 @@ document.getElementById('set-btn').addEventListener('click', () => {
     updateDisplay();
 });
 
+document.getElementById('make-array-btn').addEventListener('click', () => {
+
+    for (let i = 0; i < 10; i++) {
+        arrayList.add(i);
+    }
+    updateDisplay();
+});
+
 function updateDisplay() {
     arrayDisplay.textContent = 'ArrayList: [' + arrayList.data.join(', ') + ']';
     displayArray();
