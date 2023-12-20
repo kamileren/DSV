@@ -6,7 +6,6 @@
 #sidebar {
     flex: 0 0 200px; /* Adjust width as needed */
     padding: 20px;
-    border-right: 1px solid #ccc; /* Border between sidebar and main content */
 }
 
 #array-list-container {
@@ -83,4 +82,23 @@ body {
     background-position: center center; /* Center the image */
     background-attachment: fixed; /* Fixed position relative to the viewport */
     min-height: 100%; /* Ensure minimum height */
+}
+/* Mobile view: Sidebar at the bottom */
+@media (max-width: 768px) {
+    #array-list-app {
+        /* Adjust layout for mobile */
+        flex-direction: column;
+    }
+
+    #sidebar {
+        position: fixed; /* Fix position to the bottom of the viewport */
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        /* Additional styles for mobile sidebar, like background, padding, etc. */
+    }
+
+    #array-list-container {
+        padding-bottom: /* Height of the sidebar to prevent overlap */;
+    }
 }
