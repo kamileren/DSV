@@ -100,6 +100,47 @@ class ArrayList
         return numOfNumberElements;
     }
 
+    contains(element)
+    {
+        for(let i = 0; i<this.numOfNumberElements-1;i++)
+        {
+            if(this.data[i] === element)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    
+    indexOf(element)
+    {
+
+        for(let i = 0; i<this.numOfNumberElements-1;i++)
+        {
+            if(this.data[i] === element)
+            {
+                return i;
+            }
+        }
+
+        return "Does not Exist"
+        
+    }
+
+
+    subList(start,end)
+    {
+        let a = new ArrayList();
+        for (let i = start; i < end; i++) {
+            sublist.add(this.get(i));
+        }
+    
+
+        return a;
+    }
+
 
 
     #resize() {
