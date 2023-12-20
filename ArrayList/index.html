@@ -9,6 +9,8 @@
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');</style>
 <body>
+    
+
     <div id="array-list-app">
         <div id="sidebar">
             <input type="text" id="element-input" placeholder="Enter element">
@@ -22,11 +24,13 @@
             <button id="set-btn">Set Element</button>
             <button id="clear-array-btn">Clear Array</button>
         </div>
+        <button id="toggle-sound-btn">🔊</button>
         <div id="array-list-container">
             <div id="array-list-title"></div> <!-- Separate container for the title -->
             <div id="array-display"></div> <!-- Container for array elements -->
         </div>
     </div>
+    <audio id="sound1" src="Audio/SFX_UI_Click_Organic_Pop_Thin_Generic_2.wav"></audio>
     <script src="ArrayList.js"></script>
     <script src="script.js"></script>
 </body>

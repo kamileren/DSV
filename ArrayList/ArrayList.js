@@ -1,10 +1,13 @@
 class ArrayList
 {
+    colors = new Array();
 
     constructor()
     {
         this.data = new Array(1);   
         this.numOfNumberElements = 0;
+        this.colors = new Array(this.data.length).fill('');
+
     }   
 
 
@@ -72,18 +75,50 @@ class ArrayList
             this.#resize();
         }
     
-        // Shift elements to the right
-        for (let i = this.numOfNumberElements; i > index; i--) {
-            this.data[i] = this.data[i - 1];
-            updateDisplay();
-            await this.delay(200); // Delay for visualization
+        const tempColor = "#f07a7a";
+        const tempColor2 = "#cf5757";
+        const tempColor3 = "#8ca2de";
+        if (this.numOfNumberElements > 0) {
+            this.colors[this.numOfNumberElements - 1] = tempColor;
         }
-    
-        // Insert the new element
+
+        this.colors[this.numOfNumberElements-1] = tempColor;
+            
+        for (let i = this.numOfNumberElements; i > index; i--) {
+            this.colors[i] = tempColor2;
+            this.colors[i-1] = tempColor2;
+            this.colors[i+1] = tempColor;
+
+            this.data[i] = this.data[i - 1];
+            updateDisplay(); // Update display to reflect the data shift
+            await this.delay(250); // Delay for visualization    
+        }
+        
+        
         this.data[index] = element;
         this.numOfNumberElements++;
-        updateDisplay(); // Update display after insertion
+        this.colors[index] = tempColor3;
+        updateDisplay();
+        await this.delay(250); // Delay for visualization 
+        this.colors.fill(''); // Reset all colors to default   
+        updateDisplay();
+
+    
     }
+
+
+    #getNthChild(parentId, n) {
+        const parentDiv = document.getElementById(parentId);
+        if (parentDiv && n >= 0 && n < parentDiv.children.length) {
+            return parentDiv.children[n];
+        } else {
+            console.log("Invalid parent ID or index out of range");
+            return null;
+        }
+    }
+    
+    
+    
     
 
 
@@ -93,15 +128,47 @@ class ArrayList
             return;
         }
         let removedElement = this.data[index];
+
+        const arrayDisplays = 'array-display';
+
+
+        const tempColor = "#f07a7a";
+        const tempColor2 = "#cf5757";
+        const tempColor3 = "#8ca2de";
+
+
+        this.colors[index] = tempColor2;
+
+
         for (let i = index; i < this.numOfNumberElements; i++) {
+
+            this.colors[i] = tempColor3;
+            this.colors[i+1] =tempColor3;
+            if(i >= index+1) this.colors[i-1] = tempColor;
+            if(i >= index+2) this.colors[i-2] = tempColor;
+
+
+
             this.data[i] = this.data[i + 1];
-            updateDisplay();
+            
             await this.delay(250); // Delay for visualization
+            updateDisplay(); // Make sure this function reflects the changes in the UI
+
+
         }
+
+        let lastElem = this.#getNthChild(arrayDisplays, this.numOfNumberElements - 1);
+        if (lastElem) lastElem.style.backgroundColor = ""; // Reset the color or set it to default
+
+
         this.data[this.numOfNumberElements - 1] = undefined; // Set the last element to undefined
         this.numOfNumberElements--; // Decrement the count of elements
-        if(this.data.length>=3*this.numOfNumberElements) this.#shrink();
+
+        if(this.data.length >= 3 * this.numOfNumberElements) this.#shrink();
+        this.colors.fill(''); // Reset all colors to default   
+        updateDisplay();
         return removedElement;
+
     }
 
     size()
