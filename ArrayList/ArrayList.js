@@ -76,7 +76,7 @@ class ArrayList
         for (let i = this.numOfNumberElements; i > index; i--) {
             this.data[i] = this.data[i - 1];
             updateDisplay();
-            await this.delay(1000); // Delay for visualization
+            await this.delay(200); // Delay for visualization
         }
     
         // Insert the new element
