@@ -225,11 +225,7 @@ function showPopup(element, additionalContent) {
     popup.appendChild(setButton);
     popup.appendChild(inputForAddSet);
 
-
-
 }
-
-
 
 document.addEventListener('click', (event) => {
     console.log("Document clicked"); // Debugging log
@@ -240,23 +236,12 @@ document.addEventListener('click', (event) => {
     }
 });
 
-
 function hidePopup() {
     const popup = document.getElementById("popup");
     if (popup) {
         popup.style.display = "none";
     }
 }
-
-
-
-
-
-
-
-
-
-
 
 
 updateDisplay();
