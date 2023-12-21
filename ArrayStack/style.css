@@ -1,14 +1,14 @@
-#array-list-app {
+#array-stack-app {
     display: flex;
     align-items: start;
 }
 
 
-#array-list-container {
+#array-stack-container {
     flex-grow: 1; /* Take up the remaining space */
     padding: 20px;
 }
-#array-list-title {
+#array-stack-title {
     width: 100%; /* Ensure full width */
     text-align: center; /* Center the text */
 }
@@ -79,10 +79,44 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
+    cursor: pointer
+}
+
+#array-display:hover .array-element {
+    filter: blur(0.1px); 
+}
+
+/* Remove blur from the element that is actually being hovered */
+#array-display .array-element:hover {
+    filter: none;
+}
+
+.array-element:hover {
+    border: 2px solid; 
 }
 
 .array-element-empty {
     visibility: hidden;
+
+}
+
+#toggle-sound-btn {
+    position: fixed;       /* Fixed position */
+    top: 20px;             /* 20px from the top */
+    right: 20px;           /* 20px from the right */
+    padding: 10px 20px;    /* Padding: 10px top/bottom, 20px left/right */
+    background-color: #333;/* Dark background color */
+    color: #fff;           /* Light text color */
+    border: none;          /* No border */
+    border-radius: 5px;    /* Slightly rounded corners */
+    font-size: 2em;        /* Font size */
+    cursor: pointer;       /* Pointer cursor on hover */
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+#toggle-sound-btn:hover {
+    background-color: #444;/* Slightly lighter background on hover */
 }
 
 body {
@@ -96,9 +130,74 @@ body {
     min-height: 100%; /* Ensure minimum height */
 }
 
+.highlight {
+    background-color: black;
+}
+
+
+.popup {
+    display: none;
+    position: absolute;
+    z-index: 10;
+    background-color: #750E21;
+    color: white;
+    border: 1px solid #750E21;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    max-width: 300px; /* Maximum width */
+    word-wrap: break-word; /* Ensure text wraps */
+}
+
+.popup button {
+    padding: 2px 5px;
+    margin: 5px;
+    border: none;
+    border-radius: 1px;
+    background-color: #AE445A;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.popup button:hover {
+    background-color: #0056b3;
+}
+
+.popup-content {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+}
+
+.popup-input {
+    width: 3    0%; /* Make the input field take up the full width of the popup */
+    padding: 8px;
+    margin-bottom: 10px; /* Add some space below the input field */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.vertical-layout {
+    flex-direction: column; /* Stack elements vertically */
+    align-items: center; /* Center elements horizontally */
+}
+
+.vertical-layout .array-element {
+    /* Adjust width and height to make elements smaller */
+    width: 40px; 
+    height: 10px; 
+    /* Remove margin */
+    margin: 0; 
+}
+
 /* Mobile view adjustments */
 @media (max-width: 768px) {
-    #array-list-app {
+    #array-stack-app {
         display: flex;
         flex-direction: column;
         align-items: center; /* Center items horizontally */
@@ -110,7 +209,7 @@ body {
         border-radius: 0; /* Remove border-radius for a full-width look */
     }
 
-    #array-list-container {
+    #array-stack-container {
         order: 1;
         width: 100%; /* Full width */
         /* Add padding-bottom if needed */
