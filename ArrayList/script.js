@@ -72,15 +72,7 @@ document.getElementById('clear-array-btn').addEventListener('click', () => {
     // Update display
     updateDisplay();
 });
-document.getElementById('contains-btn').addEventListener('click', () => {
-    const elementToCheck = elementInput.value;
 
-    if (arrayList.contains(elementToCheck)) {
-        arrayDisplay.style.backgroundColor = 'red';
-    } else {
-        arrayDisplay.style.backgroundColor = 'initial';
-    }
-});
 
 function toggleSidebar(isArrayCreated) {
     if (isArrayCreated) {

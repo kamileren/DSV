@@ -203,7 +203,6 @@ body {
     padding: 10px;
     margin-right: 20px; /* Space between nodes */
     border: 1px solid black;
-    border-radius: 50%; /* Circular nodes */
     text-align: center;
     background-color: #f0f0f0;
     color: black;

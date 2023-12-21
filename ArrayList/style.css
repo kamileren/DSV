@@ -139,13 +139,13 @@ body {
     display: none;
     position: absolute;
     z-index: 10;
-    background-color: #750E21;
+    background-color: (255,255,255);
     color: white;
     border: 1px solid #750E21;
     padding: 15px;
     border-radius: 5px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-    max-width: 1em; /* Maximum width */
+    max-width: 150; /* Maximum width */
     word-wrap: break-word; /* Ensure text wraps */
 }
 
