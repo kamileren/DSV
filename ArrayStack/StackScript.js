@@ -52,8 +52,6 @@ function updateDisplay() {
 document.getElementById('clear-array-btn').addEventListener('click', () => {
     
     arrayStack.clear();
-
-    // Update display
     updateDisplay();
     //toggleSidebar(false); // Revert sidebar when array is cleared
 });
