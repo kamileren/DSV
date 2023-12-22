@@ -173,48 +173,44 @@ body {
 .button-group {
     display: flex;
     justify-content: space-between;
-}
-
-.popup-input {
-    width: 3    0%; /* Make the input field take up the full width of the popup */
-    padding: 8px;
-    margin-bottom: 10px; /* Add some space below the input field */
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-.vertical-layout {
-    flex-direction: column; /* Stack elements vertically */
-    align-items: center; /* Center elements horizontally */
-}
-
-.vertical-layout .array-element {
-    /* Adjust width and height to make elements smaller */
-    width: 40px; 
-    height: 10px; 
-    /* Remove margin */
-    margin: 0; 
-}
+}   
 #linked-list-display {
     display: flex;
-    align-items: center;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    /* Add any additional styling (e.g., height, width) as needed */
 }
-
+#linked-list-title{
+    width: 100%; /* Ensure full width */
+    text-align: center; /* Center the text */
+}
 .list-node {
     padding: 10px;
-    margin-right: 20px; /* Space between nodes */
     border: 1px solid black;
+    border-radius: 50%; /* Circular nodes */
     text-align: center;
-    background-color: #f0f0f0;
+    background-color: white;
     color: black;
+    display: inline-block; /* Display inline for horizontal layout */
+    position: relative; /* For positioning the text below */
 }
 
 .list-link {
     width: 20px;
     height: 2px;
-    background-color: #f0f0f0;
-    margin-right: 20px;
+    background-color: black;
+    display: inline-block; /* Display inline for horizontal layout */
+    vertical-align: middle; /* Align with the center of nodes */
 }
 
+/* Style for the node text */
+.node-text {
+    position: absolute;
+    top: 100%; /* Position below the node */
+    left: 50%;
+    transform: translateX(-50%); /* Center the text */
+    margin-top: 5px;
+}
 /* Mobile view adjustments */
 @media (max-width: 768px) {
     #array-stack-app {

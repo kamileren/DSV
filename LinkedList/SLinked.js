@@ -4,6 +4,13 @@ const arrayDisplay = document.getElementById('array-display');
 const sidebar = document.getElementById('sidebar');
 
 function updateDisplay() {
+    const listTitle = document.getElementById('singly-list-title');
+    listTitle.innerHTML = '';
+
+    const heading = document.createElement('h2');
+    heading.textContent = 'Singly-Linked-List Visualization';
+    listTitle.appendChild(heading);
+
     const display = document.getElementById('linked-list-display');
     display.innerHTML = '';
     let current = linkedList.head;

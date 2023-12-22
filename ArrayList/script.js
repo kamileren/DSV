@@ -34,7 +34,7 @@ function updateDisplay() {
 
  }
  function displayArray() {
-    const arrayTitle = document.getElementById('array-list-title');
+    const arrayTitle = document.getElementById('array-title');
     arrayTitle.innerHTML = ''; // Clear existing title
 
     const heading = document.createElement('h2');

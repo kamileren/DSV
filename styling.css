@@ -1,14 +1,14 @@
-#array-list-app {
+#array-app {
     display: flex;
     align-items: start;
 }
 
 
-#array-list-container {
+#array-container {
     flex-grow: 1; /* Take up the remaining space */
     padding: 20px;
 }
-#array-list-title {
+#array-title {
     width: 100%; /* Ensure full width */
     text-align: center; /* Center the text */
 }
@@ -139,13 +139,13 @@ body {
     display: none;
     position: absolute;
     z-index: 10;
-    background-color: rgba(165, 42, 42, 0.8);
+    background-color: #750E21;
     color: white;
     border: 1px solid #750E21;
     padding: 15px;
     border-radius: 5px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-    max-width: 150; /* Maximum width */
+    max-width: 300px; /* Maximum width */
     word-wrap: break-word; /* Ensure text wraps */
 }
 
@@ -182,17 +182,22 @@ body {
     border: 1px solid #ccc;
     border-radius: 4px;
 }
+.vertical-layout {
+    flex-direction: column; /* Stack elements vertically */
+    align-items: center; /* Center elements horizontally */
+}
 
-
-
-
-
-
-
+.vertical-layout .array-element {
+    /* Adjust width and height to make elements smaller */
+    width: 40px; 
+    height: 10px; 
+    /* Remove margin */
+    margin: 0; 
+}
 
 /* Mobile view adjustments */
 @media (max-width: 768px) {
-    #array-list-app {
+    #array-app {
         display: flex;
         flex-direction: column;
         align-items: center; /* Center items horizontally */
@@ -204,7 +209,7 @@ body {
         border-radius: 0; /* Remove border-radius for a full-width look */
     }
 
-    #array-list-container {
+    #array-container {
         order: 1;
         width: 100%; /* Full width */
         /* Add padding-bottom if needed */

@@ -29,7 +29,7 @@ function updateDisplay() {
 }
 
 function displayArray() {
-    const arrayTitle = document.getElementById('array-stack-title');
+    const arrayTitle = document.getElementById('array-title');
     arrayTitle.innerHTML = '';
 
     const heading = document.createElement('h2');
