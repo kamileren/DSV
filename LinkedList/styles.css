@@ -185,23 +185,60 @@ body {
     text-align: center; /* Center the text */
 }
 .list-node {
-    padding: 10px;
-    border: 1px solid black;
-    border-radius: 50%; /* Circular nodes */
-    text-align: center;
-    background-color: white;
+
+    transition: transform 0.3s; /* Smooth transition for hover effect */
+
     color: black;
-    display: inline-block; /* Display inline for horizontal layout */
-    position: relative; /* For positioning the text below */
+    background-color: #f0f0f0;
+    text-align: center;
+
+    /* Adjustments for square shape and size */
+    width: 30px; /* Smaller width for the box */
+    height: 30px; /* Height equal to width to make it square */
+    line-height: 30px; /* Align text vertically */
+
+    /* Remove margin and use padding for spacing */
+    margin: 0 10px;
+    padding: 2px; /* Adjust padding as needed */
+
+    /* Flexbox settings for centering content */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer
+
 }
 
 .list-link {
-    width: 20px;
-    height: 2px;
-    background-color: black;
+    width: 20px; /* Width of the line */
+    height: 2px; /* Height of the line */
+    background-color: white; /* Color of the line */
     display: inline-block; /* Display inline for horizontal layout */
     vertical-align: middle; /* Align with the center of nodes */
+    position: relative; /* Needed for absolute positioning of the arrowhead */
+    border-color: transparent transparent transparent #333; /* Darker arrow for better visibility */
+
 }
+
+.list-link::after {
+    content: ""; /* Required for the pseudo-element to display */
+    position: absolute; /* Posi tion the arrowhead */
+    right: -5px; /* Adjust the position of the arrowhead */
+    top: 50%; /* Center the arrowhead vertically */
+    border-width: 5px; /* Size of the arrowhead */
+    border-style: solid; /* Style of the arrow borders */
+    border-color: transparent transparent transparent white; /* Only the left border (arrowhead) is colored */
+    transform: translateY(-50%); /* Align the arrowhead with the center of the line */
+}
+
+.list-node:hover {
+    transform: scale(1.1); /* Slightly enlarge the node on hover */
+    background-color: #e0e0e0; /* Change background color on hover */
+}
+
+
+
 
 /* Style for the node text */
 .node-text {
@@ -213,22 +250,18 @@ body {
 }
 /* Mobile view adjustments */
 @media (max-width: 768px) {
-    #array-stack-app {
-        display: flex;
-        flex-direction: column;
-        align-items: center; /* Center items horizontally */
+    .list-node {
+        width: 25px;
+        height: 25px;
+        line-height: 25px;
     }
 
-    #sidebar {
-        flex-basis: 100%; /* Full width on small screens */
-        order: 2; /* Move to the bottom */
-        border-radius: 0; /* Remove border-radius for a full-width look */
+    .list-link {
+        width: 15px;
     }
 
-    #array-stack-container {
-        order: 1;
-        width: 100%; /* Full width */
-        /* Add padding-bottom if needed */
+    .list-link::after {
+        border-width: 4px;
     }
 }
 
