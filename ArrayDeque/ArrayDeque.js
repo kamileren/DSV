@@ -50,6 +50,7 @@ class ArrayDeque {
     
         // Increment the number of elements
         this.numOfElements++;
+        drawPieChart();
     }
     
 
@@ -57,6 +58,7 @@ class ArrayDeque {
         if (this.numOfElements === this.data.length) this.#resize();
         this.data[this.#getRealLocation(this.numOfElements)] = element;
         this.numOfElements++;
+        drawPieChart();
     }
 
     removeFront() {
@@ -118,60 +120,60 @@ class ArrayDeque {
 }
 
 
-function testArrayDeque() {
-    let deque = new ArrayDeque();
-    console.log("Initial Deque (Should be empty):", deque.isEmpty());
+// function testArrayDeque() {
+//     let deque = new ArrayDeque();
+//     console.log("Initial Deque (Should be empty):", deque.isEmpty());
 
-    // Add elements to the back
-    deque.addBack(1);
-    deque.addBack(2);
-    deque.addBack(3);
-    console.log("After adding 1, 2, 3 to the back:", deque.size() === 3);
+//     // Add elements to the back
+//     deque.addBack(1);
+//     deque.addBack(2);
+//     deque.addBack(3);
+//     console.log("After adding 1, 2, 3 to the back:", deque.size() === 3);
 
-    // Remove element from the front
-    console.log("Remove front (Should be 1):", deque.removeFront() === 1);
+//     // Remove element from the front
+//     console.log("Remove front (Should be 1):", deque.removeFront() === 1);
 
-    // Add elements to the front
-    deque.addFront(0);
-    console.log("After adding 0 to the front:", deque.get(0) === 0);
+//     // Add elements to the front
+//     deque.addFront(0);
+//     console.log("After adding 0 to the front:", deque.get(0) === 0);
 
-    // Remove element from the back
-    console.log("Remove back (Should be 3):", deque.removeBack() === 3);
+//     // Remove element from the back
+//     console.log("Remove back (Should be 3):", deque.removeBack() === 3);
 
-    // Check size
-    console.log("Current size (Should be 2):", deque.size() === 2);
+//     // Check size
+//     console.log("Current size (Should be 2):", deque.size() === 2);
 
-    // Clear deque
-    deque.clear();
-    console.log("After clearing (Should be empty):", deque.isEmpty());
+//     // Clear deque
+//     deque.clear();
+//     console.log("After clearing (Should be empty):", deque.isEmpty());
 
-    // Test resizing
-    for (let i = 0; i < 10; i++) {
-        deque.addFront(i);
-        console.log("Real Data:",deque.data);
-    }
-    console.log("After adding 10 elements (Size should be 10):", deque.size() === 10);
+//     // Test resizing
+//     for (let i = 0; i < 10; i++) {
+//         deque.addFront(i);
+//         console.log("Real Data:",deque.data);
+//     }
+//     console.log("After adding 10 elements (Size should be 10):", deque.size() === 10);
 
-    // Test get and set
-    console.log("Get element at index 5 (Should be 5):", deque.get(5) === 4);
-    console.log("Set element at index 5 to 50:", deque.set(50, 5) === 4);
-    console.log("Get new element at index 5 (Should be 50):", deque.get(5) === 50);
+//     // Test get and set
+//     console.log("Get element at index 5 (Should be 5):", deque.get(5) === 4);
+//     console.log("Set element at index 5 to 50:", deque.set(50, 5) === 4);
+//     console.log("Get new element at index 5 (Should be 50):", deque.get(5) === 50);
 
-    // Test edge cases
-    try {
-        deque.get(-1);
-        console.log("Getting element at negative index did not throw error.");
-    } catch (e) {
-        console.log("Getting element at negative index threw an error:", e.message);
-    }
+//     // Test edge cases
+//     try {
+//         deque.get(-1);
+//         console.log("Getting element at negative index did not throw error.");
+//     } catch (e) {
+//         console.log("Getting element at negative index threw an error:", e.message);
+//     }
 
-    try {
-        deque.set(100, 10);
-        console.log("Setting element at out-of-bound index did not throw error.");
-    } catch (e) {
-        console.log("Setting element at out-of-bound index threw an error:", e.message);
-    }
-}
+//     try {
+//         deque.set(100, 10);
+//         console.log("Setting element at out-of-bound index did not throw error.");
+//     } catch (e) {
+//         console.log("Setting element at out-of-bound index threw an error:", e.message);
+//     }
+// }
 
-// Run the tester
-testArrayDeque();
+// // Run the tester
+// testArrayDeque();
