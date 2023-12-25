@@ -4,14 +4,11 @@ const indexInput = document.getElementById('index-input');
 const arrayDisplay = document.getElementById('array-display');
 const sidebar = document.getElementById('sidebar');
     
-
+//This functions are for t
 document.getElementById('add-btn').addEventListener('click', () => {
     arrayList.add(elementInput.value);
     updateDisplay();
 });
-
-
-
 document.getElementById('remove-btn').addEventListener('click', () => {
     arrayList.remove();
     updateDisplay();
