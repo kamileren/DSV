@@ -8,9 +8,9 @@ class Node {
 
 class LinkedList {
     constructor() {
-        this.dummy = new Node();
-        this.dummy.prev=this.dummy;
-        this.dummy.next=this.dummy;
+        this.dummy = new Node(null); // Initialized with null data
+        this.dummy.prev = this.dummy;
+        this.dummy.next = this.dummy;
         this.n = 0;
     }
 
@@ -27,6 +27,7 @@ class LinkedList {
         }
         return current;
     }
+
     get(index) {
         if (index < 0 || index >= this.n) {
             throw new Error("Index out of bounds");
@@ -43,6 +44,7 @@ class LinkedList {
         node.data = data;
         return oldData;
     }
+
     add(index, data) {
         if (index < 0 || index > this.n) {
             throw new Error("Index out of bounds");
@@ -55,8 +57,8 @@ class LinkedList {
         node.prev = newNode;
         this.n++;
     }
+
     remove(index) {
-        // Check bounds
         if (index < 0 || index >= this.n) {
             throw new Error("Index out of bounds");
         }
@@ -76,9 +78,9 @@ class LinkedList {
     }
 
     printList() {
-        let current = this.dummy.next; // Start from the first real node, skipping the dummy node
+        let current = this.dummy.next;
         let result = '';
-        while (current !== this.tail) { // Iterate until reaching the dummy tail node
+        while (current !== this.dummy) { // Corrected to check against dummy
             result += current.data + ' -> ';
             current = current.next;
         }
@@ -86,47 +88,36 @@ class LinkedList {
         console.log(result);
     }
 }
+
 function testLinkedList() {
     console.log("Testing LinkedList");
 
-    // Create a new LinkedList
     let ll = new LinkedList();
 
-    // Add elements
     console.log("Adding elements");
-    ll.add(0, "a"); // Add 'a' at index 0
-    ll.add(1, "b"); // Add 'b' at index 1
-    ll.add(2, "c"); // Add 'c' at index 2
+    ll.add(0, "a"); 
+    ll.add(1, "b"); 
+    ll.add(2, "c"); 
 
-    // Print list
     console.log("Initial list:");
     ll.printList();
 
-    // Get elements
-    console.log("Getting element at index 1:", ll.get(1)); // Should be 'b'
+    console.log("Getting element at index 1:", ll.get(1)); 
 
-    // Set element
     console.log("Setting element at index 1 to 'x'");
-    ll.set(1, "x"); // Set index 1 to 'x'
+    ll.set(1, "x"); 
 
-    // Print list
     console.log("List after setting:");
     ll.printList();
 
-    // Remove element
     console.log("Removing element at index 2");
-    ll.remove(2); // Remove element at index 2
+    ll.remove(2); 
 
-    // Print list
     console.log("List after removal:");
     ll.printList();
 
-    // Check size
     console.log("Size of the list:", ll.size());
-
-    // Check if list is empty
     console.log("Is the list empty?", ll.isEmpty());
 }
 
-// Run the test function
 testLinkedList();
