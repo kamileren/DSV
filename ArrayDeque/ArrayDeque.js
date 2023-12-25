@@ -1,8 +1,13 @@
+const FilledColour = "#08D9D6";
+const EmptyColour = "#EEEEEE";
+const startColour = "#00ADB5";
 class ArrayDeque {
     constructor() {
         this.data = new Array(4); // Starting with a larger initial size
         this.numOfElements = 0;
         this.start = 0; // Head of the deque
+        this.colours = new Array(4);
+        this.colours.fill(EmptyColour);
     }
 
     #getRealLocation(index) {
@@ -41,11 +46,15 @@ class ArrayDeque {
         if (this.isEmpty()) {
             // If the deque is empty, add the first element at index 0
             this.data[0] = element;
+            this.colours[0] = FilledColour;
             this.start = 0;
+            this.colours[this.start] = startColour;
         } else {
             // If the deque is not empty, decrement the start index and add the element
+            this.colours[this.start] = FilledColour;
             this.start = (this.start === 0) ? this.data.length - 1 : this.start - 1;
             this.data[this.start] = element;
+            this.colours[this.start] = startColour;
         }
     
         // Increment the number of elements
@@ -70,6 +79,7 @@ class ArrayDeque {
         this.start = (this.start + 1) % this.data.length;
         this.numOfElements--;
         if (this.data.length >= 3 * this.numOfElements) this.#shrink();
+        this.colours[this.start] = startColour;
         return removedElement;
     }
 
@@ -94,16 +104,23 @@ class ArrayDeque {
     #resize() {
         let newSize = this.data.length * 2;
         let newArr = new Array(newSize);
+        let newColArr = new Array(newSize);
+        newColArr.fill(EmptyColour);
     
         // Rearrange elements in the new array based on their actual position in the circular buffer
         for (let i = 0; i < this.numOfElements; i++) {
             newArr[i] = this.data[this.#getRealLocation(i)];
+            newColArr[i] = this.colours[this.#getRealLocation(i)];
         }
 
-        console.log("After Resize: ",newArr);
+        
+
     
         this.data = newArr;
+        this.colours = newColArr;
         this.start = 0; 
+
+    
     }
     
     
@@ -111,10 +128,15 @@ class ArrayDeque {
     #shrink() {
         let newSize = Math.max(4    , this.data.length / 2);
         let newArr = new Array(newSize);
+        let newColArr = new Array(newSize);
+        newColArr.fill(EmptyColour);
+
         for (let i = 0; i < this.numOfElements; i++) {
             newArr[i] = this.data[this.#getRealLocation(i)];
+            newColArr[i] = this.colours[this.#getRealLocation(i)];
         }
         this.data = newArr;
+        this.colours = newColArr;
         this.start = 0;
     }
 }
