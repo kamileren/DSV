@@ -15,16 +15,17 @@ const svg = d3.select("#mySvg")
     .attr("transform", `translate(${width / 2},${height / 2})`); // Centering the chart
 
 // Populate the deque with random data
-for (let i = 0; i < 36; i++) {
+for (let i = 0; i < 126; i++) {
     deque.addFront(Math.floor(Math.random() * 50));
 }
+      
 
 // Function to calculate dynamic radii
 function calculateRadii(length) {
     const scaleFactor = 10;
-    const maxInnerRadius = 230;
+    const maxInnerRadius = 400;
     const dynamicOuterRadius = Math.min(width, height) / 2 - Math.min(width, height) / (2 + scaleFactor * length);
-    const dynamicInnerRadius = Math.min(maxInnerRadius, dynamicOuterRadius / 3);
+    const dynamicInnerRadius = Math.min(maxInnerRadius, dynamicOuterRadius / 1.5);
     return { dynamicOuterRadius, dynamicInnerRadius };
 }
 
@@ -48,7 +49,14 @@ function drawPieChart() {
         .attr("stroke", "black")
         .attr("fill", (d, i) => deque.colours[i % deque.colours.length])
         .style("cursor", "pointer")
-        .on("click", showTooltip);
+        .on("click", showTooltip)
+        .on("mouseout", function() {
+            setTimeout(() => {
+                if (!isMouseOnTooltip) {
+                    hideTooltip();
+                }
+            }, 100);
+        });
 
     paths.exit().remove();
 
@@ -77,20 +85,56 @@ function drawLabels(data, innerRadius, outerRadius, fontSize) {
     labels.exit().remove();
 }
 
+
+
+let isMouseOnTooltip = false; // Flag to track mouse presence on the tooltip
+
+// Function to show tooltip
 function showTooltip(event, d) {
     const tooltip = d3.select("#tooltip");
     tooltip.style("visibility", "visible")
         .html("Data: " + d.data)
         .style("left", (event.pageX + 10) + "px")
         .style("top", (event.pageY - 10) + "px")
-        .on("mousemove", function (event) {
-            tooltip.style("left", (event.pageX + 10) + "px")
-                .style("top", (event.pageY - 10) + "px");
+        .on("mouseover", function () {
+            isMouseOnTooltip = true; // Mouse is over the tooltip
         })
         .on("mouseout", function () {
-            tooltip.style("visibility", "hidden");
+            isMouseOnTooltip = false; // Mouse left the tooltip
+            hideTooltip();
         });
 }
+
+// Function to hide tooltip
+function hideTooltip() {
+    if (!isMouseOnTooltip) { // Hide only if mouse is not on the tooltip
+        const tooltip = d3.select("#tooltip");
+        tooltip.style("visibility", "hidden");
+    }
+}
+
+// Adjust the zoom behavior and event handler
+const zoom = d3.zoom()
+    .scaleExtent([0.5, 5])
+    .on("zoom", zoomed);
+
+// Apply zoom behavior to the SVG, not the rectangle
+d3.select("#mySvg").call(zoom);
+
+// Zoom and pan event handler
+function zoomed(event) {
+    // Apply the zoom transformation to the group element
+    svg.attr("transform", event.transform);
+}
+
+
+
+
+
+
+
+
+
 
 // Initial drawing of the pie chart
 drawPieChart();
