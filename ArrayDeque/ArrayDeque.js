@@ -66,6 +66,16 @@ class ArrayDeque {
     addBack(element) {
         if (this.numOfElements === this.data.length) this.#resize();
         this.data[this.#getRealLocation(this.numOfElements)] = element;
+
+        if(this.numOfElements === 0) //if the first element is added from the back make sure the colour of the first added is start
+        {
+            this.colours[this.#getRealLocation(this.numOfElements)] = startColour;
+        }
+        else //else continue like normally
+        {
+            this.colours[this.#getRealLocation(this.numOfElements)] = FilledColour;
+        }
+
         this.numOfElements++;
         drawPieChart();
     }

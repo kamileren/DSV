@@ -143,3 +143,17 @@ function addElementToFront(element) {
     deque.addFront(element);
     drawPieChart();
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    var addFrontButton = document.getElementById('add-bck-btn');
+    addFrontButton.addEventListener('click', function() {
+        var elementInput = document.getElementById('element-input').value;
+        addElementToBack(elementInput);
+    });
+});
+
+function addElementToBack(element) {
+    console.log("Added to back:", element);
+    deque.addBack(element);
+    drawPieChart();
+}
