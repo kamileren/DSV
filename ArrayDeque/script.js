@@ -141,4 +141,5 @@ document.addEventListener('DOMContentLoaded', function() {
 function addElementToFront(element) {
     console.log("Added to front:", element);
     deque.addFront(element);
+    drawPieChart();
 }
