@@ -142,8 +142,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function addElementToFront(element) {
-    // Implementation of addElementToFront
-    // This function should handle the logic of adding the element to the front
     console.log("Added to front:", element);
-    // Add your logic here
+    deque.addFront(element);
 }
