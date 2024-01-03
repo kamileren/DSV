@@ -88,36 +88,3 @@ class LinkedList {
         console.log(result);
     }
 }
-
-function testLinkedList() {
-    console.log("Testing LinkedList");
-
-    let ll = new LinkedList();
-
-    console.log("Adding elements");
-    ll.add(0, "a"); 
-    ll.add(1, "b"); 
-    ll.add(2, "c"); 
-
-    console.log("Initial list:");
-    ll.printList();
-
-    console.log("Getting element at index 1:", ll.get(1)); 
-
-    console.log("Setting element at index 1 to 'x'");
-    ll.set(1, "x"); 
-
-    console.log("List after setting:");
-    ll.printList();
-
-    console.log("Removing element at index 2");
-    ll.remove(2); 
-
-    console.log("List after removal:");
-    ll.printList();
-
-    console.log("Size of the list:", ll.size());
-    console.log("Is the list empty?", ll.isEmpty());
-}
-
-testLinkedList();
