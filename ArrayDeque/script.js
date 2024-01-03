@@ -132,11 +132,8 @@ drawPieChart();
 
 document.addEventListener('DOMContentLoaded', function() {
     var addFrontButton = document.getElementById('add-btn');
-
     addFrontButton.addEventListener('click', function() {
-        // Code to execute when the button is clicked
         var elementInput = document.getElementById('element-input').value;
-        // You can call a function here to add the element to the front
         addElementToFront(elementInput);
     });
 });
