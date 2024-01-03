@@ -13,12 +13,11 @@ const svg = d3.select("#mySvg")
     .attr("height", height)
     .append("g")
     .attr("transform", `translate(${width / 2},${height / 2})`); // Centering the chart
-
-// Populate the deque with random data
-for (let i = 0; i < 126; i++) {
-    deque.addFront(Math.floor(Math.random() * 50));
-}
-      
+ 
+// // Populate the deque with random data
+// for (let i = 0; i < 126; i++) {
+//     deque.addFront(Math.floor(Math.random() * 50));
+// }
 
 // Function to calculate dynamic radii
 function calculateRadii(length) {
@@ -127,14 +126,24 @@ function zoomed(event) {
     svg.attr("transform", event.transform);
 }
 
-
-
-
-
-
-
-
-
-
 // Initial drawing of the pie chart
 drawPieChart();
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    var addFrontButton = document.getElementById('add-btn');
+
+    addFrontButton.addEventListener('click', function() {
+        // Code to execute when the button is clicked
+        var elementInput = document.getElementById('element-input').value;
+        // You can call a function here to add the element to the front
+        addElementToFront(elementInput);
+    });
+});
+
+function addElementToFront(element) {
+    // Implementation of addElementToFront
+    // This function should handle the logic of adding the element to the front
+    console.log("Added to front:", element);
+    // Add your logic here
+}
