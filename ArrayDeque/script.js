@@ -21,12 +21,19 @@ const svg = d3.select("#mySvg")
 
 // Function to calculate dynamic radii
 function calculateRadii(length) {
-    const scaleFactor = 10;
-    const maxInnerRadius = 400;
-    const dynamicOuterRadius = Math.min(width, height) / 2 - Math.min(width, height) / (2 + scaleFactor * length);
+    const baseScaleFactor = 2; // Base scale factor for exponential growth
+    const growthRate = 3; // Rate of exponential growth
+    const maxInnerRadius = 800;
+
+    // Calculate dynamicOuterRadius using exponential growth
+    const dynamicOuterRadius = Math.min(width, height) / 2 - Math.min(width, height) / (1 + baseScaleFactor * Math.pow(growthRate, length));
+
+    // Calculate dynamicInnerRadius using a fraction of dynamicOuterRadius
     const dynamicInnerRadius = Math.min(maxInnerRadius, dynamicOuterRadius / 1.5);
+
     return { dynamicOuterRadius, dynamicInnerRadius };
 }
+
 
 // Function to draw pie chart
 function drawPieChart() {
