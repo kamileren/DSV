@@ -82,7 +82,6 @@ function drawLabels(data, innerRadius, outerRadius, fontSize) {
         .merge(labels)
         .transition()
         .duration(1000)
-        .attr("transform", d => `translate(${labelArc.centroid(d)})`)
         .attr("dy", "0.35em")
         .attr("text-anchor", "middle")
         .text(d => d.data)
