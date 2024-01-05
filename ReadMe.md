@@ -1,4 +1,4 @@
-# Data Structures Overview
+# Data Structures:Basics Overview
 
 ## Part 1 - Array-Based Structures
 - **ArrayList**: A dynamic array that automatically resizes, allowing elements to be added or removed efficiently.
