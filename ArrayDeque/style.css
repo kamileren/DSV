@@ -4,6 +4,7 @@ body {
     margin-top: 50px;
 }
 #mySvg {
+    display: flex;
     border: 1px solid #ccc;
 }
 button {
@@ -18,3 +19,5 @@ button {
     background-color: white; 
     border: 1px solid black
 }
+
+

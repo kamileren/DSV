@@ -1,6 +1,8 @@
 const FilledColour = "#08D9D6";
 const EmptyColour = "#EEEEEE";
 const startColour = "#00ADB5";
+const selectedColour = "red";
+
 class ArrayDeque {
     constructor() {
         this.data = new Array(4); // Starting with a larger initial size
@@ -86,6 +88,7 @@ class ArrayDeque {
         }
         let removedElement = this.data[this.start];
         this.data[this.start] = undefined;
+        this.colours[this.start] = EmptyColour;
         this.start = (this.start + 1) % this.data.length;
         this.numOfElements--;
         if (this.data.length >= 3 * this.numOfElements) this.#shrink();
@@ -98,9 +101,9 @@ class ArrayDeque {
             throw new Error("Deque is empty");
         }
         this.numOfElements--;
-        let realLocation = this.#getRealLocation(this.numOfElements);
-        let removedElement = this.data[realLocation];
-        this.data[realLocation] = undefined;
+        let removedElement = this.data[this.#getRealLocation(this.numOfElements)];
+        this.data[this.#getRealLocation(this.numOfElements)] = undefined;
+        this.colours[this.#getRealLocation(this.numOfElements)] = EmptyColour;
         if (this.data.length >= 3 * this.numOfElements) this.#shrink();
         return removedElement;
     }
@@ -109,6 +112,59 @@ class ArrayDeque {
         this.data = new Array(4);
         this.numOfElements = 0;
         this.start = 0;
+    }
+
+
+    remove(index)
+    {
+
+        //check bounds
+        if (index < 0 || index >= this.numOfNumberElements) {
+            console.log("Invalid index");
+            return;
+        }
+
+        //store the element at index
+        let temp = this.data[this.#getRealLocation(index)];
+
+        for(let i = index;index<this.numOfElements;i++)
+        {
+            //shift elements
+            this.data[this.#getRealLocation(i)] = this.data[this.#getRealLocation(i+1)];
+        }
+
+        --this.numOfElements;
+        this.data[this.numOfNumberElements - 1] = undefined; // Set the last element to undefined for the visualization
+
+        if(this.data.length >= 3 * this.numOfElements) this.#shrink();//Shrink if needed
+
+        return temp;//return the element at th index removed.
+
+    }
+
+
+    add(element,index)
+    {
+        //check bounds
+        if (index < 0 || index > this.numOfNumberElements) {
+            console.log("Invalid index");
+            return;
+        }
+
+        //resize if there is no space anymore
+        if (this.numOfElements === this.data.length) this.#resize();
+
+
+
+        for(let i = this.numOfElements; i > index;i--)
+        {
+            //shift
+            this.data[this.#getRealLocation(index+1)] = this.data[this.#getRealLocation(index)]
+        }
+
+        //change the element
+        this.data[this.#getRealLocation(index)] = element;
+        this.numOfElements++;
     }
 
     #resize() {

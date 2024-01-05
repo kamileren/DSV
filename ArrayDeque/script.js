@@ -1,5 +1,5 @@
 // Flags and constants
-const width = 1000, height = 800;
+const width = 800, height = 600;
 const pieRadius = 200, barWidth = 50, barSpacing = 10;
 
 // Create a pie generator
@@ -8,7 +8,7 @@ const pie = d3.pie().value(() => 1); // Equal weight for each entry
 let deque = new ArrayDeque();
 
 // Select the SVG container and add a group element
-const svg = d3.select("#mySvg")
+const svg = d3.select("#mySvg") 
     .attr("width", width)
     .attr("height", height)
     .append("g")
@@ -81,6 +81,7 @@ function drawLabels(data, innerRadius, outerRadius, fontSize) {
         .append("text")
         .merge(labels)
         .transition()
+        .attr("transform", d => `translate(${labelArc.centroid(d)})`)
         .duration(1000)
         .attr("dy", "0.35em")
         .attr("text-anchor", "middle")
@@ -163,3 +164,20 @@ function addElementToBack(element) {
     deque.addBack(element);
     drawPieChart();
 }
+
+
+document.addEventListener('DOMContentLoaded',function(){
+    var removeBackButton = document.getElementById('rmv-at-bck');
+    removeBackButton.addEventListener('click',function(){
+        deque.removeBack();
+        drawPieChart();
+    })
+})
+
+document.addEventListener("DOMContentLoaded",function(){
+    var removeFrontButton = document.getElementById('rmv-at-frnt');
+    removeFrontButton.addEventListener('click',function(){
+        deque.removeFront();
+        drawPieChart();
+    })
+})
