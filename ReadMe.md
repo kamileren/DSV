@@ -1,31 +1,11 @@
-Data Structures & Algorithms
+# Data Structures Overview
 
-Part 1 - Array Based
-    -ArrayList
-    -ArrayStack
-    -Array Deque
-    -DualArray Deque
-    
+## Part 1 - Array-Based Structures
+- **ArrayList**: A dynamic array that automatically resizes, allowing elements to be added or removed efficiently.
+- **ArrayStack**: A stack data structure implemented using an array, enabling last-in-first-out (LIFO) operations.
+- **ArrayDeque**: A double-ended queue implemented with an array, facilitating operations at both ends of the queue.
+- **DualArrayDeque**: A deque that uses two arrays to optimize operations, improving performance for various operations.
 
-Part 2 - LinkedLists
-    -Signly Linked List
-    -Doubly Linked List
-
-
-Part 3 - Trees
-
-
-Part 4 - Sorting
-
-
-Part 5 - Graphs
-
-
-Part 6 - Shortest Path
-Dijkstra
-A*
-
-
-https://kamileren.github.io/DSV/ArrayList/index.html  --ArrayList
-https://kamileren.github.io/DSV/ArrayStack/ArrayStack.html --ArrayStack
-https://kamileren.github.io/DSV/LinkedList/SLinked.html --SLinkedList
+## Part 2 - Linked Lists
+- **Singly Linked List**: A series of elements where each element points to the next, allowing for efficient insertion and removal.
+- **Doubly Linked List**: Similar to a singly linked list but with each element pointing to both the next and previous elements, offering more flexibility in element traversal.
