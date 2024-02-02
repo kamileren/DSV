@@ -77,14 +77,13 @@ class LinkedList {
         return this.n;
     }
 
-    printList() {
-        let current = this.dummy.next;
-        let result = '';
-        while (current !== this.dummy) { // Corrected to check against dummy
-            result += current.data + ' -> ';
+    toArray() {
+        let current = this.dummy;
+        let result = [{data: null, dummy: true}]; // Include the dummy node with a 'dummy' property
+        while (current.next !== this.dummy) {
             current = current.next;
+            result.push({data: current.data, dummy: false}); // Regular nodes have 'dummy: false'
         }
-        result += 'null';
-        console.log(result);
+        return result;
     }
 }
