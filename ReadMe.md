@@ -9,3 +9,6 @@
 ## Part 2 - Linked Lists
 - **Singly Linked List**: A series of elements where each element points to the next, allowing for efficient insertion and removal.
 - **Doubly Linked List**: Similar to a singly linked list but with each element pointing to both the next and previous elements, offering more flexibility in element traversal.
+
+
+https://kamileren.github.io/DSV/ArrayList/index.html
